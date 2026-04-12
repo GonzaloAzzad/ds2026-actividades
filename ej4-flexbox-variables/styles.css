@@ -45,6 +45,7 @@
   padding: var(--padding-link-nav); /* Tamaño de los botones */
   color: var(--color-texto);
   text-decoration: none;
+  border-right: 2px solid gray;
 }
 
 /* Marca la página actual */
