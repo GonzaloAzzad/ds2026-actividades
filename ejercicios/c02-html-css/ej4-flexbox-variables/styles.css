@@ -1,0 +1,88 @@
+:root {
+  --color-fondo-nav: black;
+  --color-fondo: lightgray;
+  --color-texto: white;
+  --color-texto-principal: black;
+  --color-hover: gray;
+  --color-activo: rgb(255, 81, 0);
+  --color-borde-nav: rgba(255, 81, 0, 0.959);
+
+  --borde-radio: 10px;
+  --sombra: 0 10px 10px rgba(0, 0, 0, 0.3);
+
+  --ancho-img-estudios: 450px;
+  --ancho-img-exp: 600px;
+  --ancho-img-hobbies: 600px;
+
+  --padding-link-nav: 15px;
+  --padding-top-body: 35px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Estilo de la barra de navegación */
+.navbar {
+  position: fixed; /* Posición fíja */
+  top: 0;
+  left: 0;
+
+  width: 100%; /* Ocupa todo el ancho */
+  background-color: var(--color-fondo-nav);
+
+  display: flex;
+  border: 2px solid var(--color-borde-nav); /* Borde de la barra de navegación */
+  border-radius: var(--borde-radio); /* Esquinas redondeadas */
+  box-shadow: var(--sombra);
+
+  animation: descender 0.5s ease; /* Animación de caída */
+}
+
+.navbar a {
+  flex: 1;
+  text-align: center; /* Alineación de los links */
+  padding: var(--padding-link-nav); /* Tamaño de los botones */
+  color: var(--color-texto);
+  text-decoration: none;
+  border-right: 2px solid gray;
+}
+
+/* Marca la página actual */
+.navbar a.activo {
+  color: var(--color-activo);
+  font-weight: bold;
+}
+
+/* Efecto al pasar mouse por encima */
+.navbar a:hover {
+  background-color: var(--color-hover);
+}
+
+body {
+  padding-top: var(--padding-top-body);
+  margin-top: 2px; /* Separación entre la barra de navegación y el título */
+  background-color: var(--color-fondo); /* Color de fondo de la página */
+  color: var(--color-texto-principal);
+}
+
+.img-estudios {
+  width: var(--ancho-img-estudios);
+}
+
+.img-exp {
+  width: var(--ancho-img-exp);
+}
+
+.img-hobbies {
+  width: var(--ancho-img-hobbies);
+}
+
+@keyframes descender {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
