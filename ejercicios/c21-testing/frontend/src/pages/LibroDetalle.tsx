@@ -1,0 +1,58 @@
+import { useParams, Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Spinner, Alert } from 'react-bootstrap'
+import { useFetch } from '../hooks/useFetch'
+import type { Libro } from '../types/libro'
+
+function LibroDetalle() {
+  const { id } = useParams<{ id: string }>()
+  const { data: libro, loading, error } = useFetch<Libro>(`/libros/${id}`)
+
+  useEffect(() => {
+    document.title = libro ? `${libro.titulo} — La Librería` : 'Detalle — La Librería'
+  }, [libro])
+
+  if (loading) {
+    return (
+      <div className="container py-5 text-center">
+        <Spinner animation="border" role="status" />
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="container py-5">
+        <Alert variant="danger">{error}</Alert>
+      </div>
+    )
+  }
+
+  if (!libro) {
+    return (
+      <div className="container py-5">
+        <h2>Libro no encontrado</h2>
+        <Link to="/catalogo">Volver al catálogo</Link>
+      </div>
+    )
+  }
+
+  return (
+    <div className="container py-5">
+      <div className="row">
+        <div className="col-md-4">
+          <img src={libro.imagen} alt={libro.titulo} className="img-fluid rounded" />
+        </div>
+        <div className="col-md-8">
+          <h2>{libro.titulo}</h2>
+          <h5 className="text-muted">{libro.autor.nombre}</h5>
+          <p><strong>Género:</strong> {libro.genero}</p>
+          <p>{libro.descripcion}</p>
+          <Link to="/catalogo">Volver al catálogo</Link>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default LibroDetalle
